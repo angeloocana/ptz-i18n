@@ -68,7 +68,7 @@ describe('langs', function () {
 
   describe('getLangs', function () {
     it('/ & en', function () {
-      var langs = (0, _index.getLangs)('en', (0, _index.getUrlForLang)('/en/', '/'));
+      var langs = (0, _index.getLangs)(['en', 'fr', 'pt'], 'en', (0, _index.getUrlForLang)('/en/', '/'));
       var expected = [{
         'langKey': 'en',
         'link': '/en/',

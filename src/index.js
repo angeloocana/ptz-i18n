@@ -47,13 +47,12 @@ const getUrlForLang = curry((homeLink, url, langKey) => {
 
 /**
  * Get langs to create Menu
+ * @param {[String]} langs lang keys ['en', 'fr', 'pt']
  * @param {String} currentLangKey current Lang Key
  * @param {func} getUrlForLang getUrlForLang curried, waiting for langKey
  * @returns {Array} langs menu data
  */
-const getLangs = (currentLangKey, getUrlForLang) => {
-  const langs = ['en', 'fr', 'pt'];
-
+const getLangs = (langs, currentLangKey, getUrlForLang) => {  
   return langs.map(langKey => {
     return {
       langKey,

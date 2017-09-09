@@ -9,7 +9,7 @@
     "build": "babel src --out-dir ./dist",
     "watch": "babel -w src --out-dir ./dist",
     "pretest": "yarn run lint",
-    "test": "jest",
+    "test": "jest && codecov",
     "test:watch": "jest --watch"
   },
   "respository": {
@@ -30,6 +30,7 @@
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
+    "codecov": "^2.3.0",
     "eslint": "^4.4.1",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.7.0",
@@ -51,5 +52,9 @@
       "spec.js,test.js"
     ]
   },
-  "readme": "README.md"
+  "readme": "README.md",
+  "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
+  }
 }

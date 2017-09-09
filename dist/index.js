@@ -62,13 +62,12 @@ var getUrlForLang = (0, _ramda.curry)(function (homeLink, url, langKey) {
 
 /**
  * Get langs to create Menu
+ * @param {[String]} langs lang keys ['en', 'fr', 'pt']
  * @param {String} currentLangKey current Lang Key
  * @param {func} getUrlForLang getUrlForLang curried, waiting for langKey
  * @returns {Array} langs menu data
  */
-var getLangs = function getLangs(currentLangKey, getUrlForLang) {
-  var langs = ['en', 'fr', 'pt'];
-
+var getLangs = function getLangs(langs, currentLangKey, getUrlForLang) {
   return langs.map(function (langKey) {
     return {
       langKey: langKey,

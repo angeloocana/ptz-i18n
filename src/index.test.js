@@ -67,7 +67,7 @@ describe('langs', () => {
 
   describe('getLangs', () => {
     it('/ & en', () => {
-      const langs = getLangs('en', getUrlForLang('/en/', '/'));
+      const langs = getLangs(['en', 'fr', 'pt'], 'en', getUrlForLang('/en/', '/'));
       const expected = [
         {
           'langKey': 'en',
