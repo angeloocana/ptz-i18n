@@ -12,17 +12,30 @@ describe('langs', () => {
   describe('getCurrentLangKey', () => {
     it('/ & en => en', () => {
       const url = '/';
-      assert.equal(getCurrentLangKey(url), 'en');
+      const defaultLang = 'en';
+      const langs = ['en', 'fr', 'pt'];
+
+      const langKey = getCurrentLangKey(langs, defaultLang, url);
+
+      assert.equal(langKey, 'en');
     });
     it('/ & pt => pt', () => {
       const url = '/';
-      const browserLang = 'pt';
-      assert.equal(getCurrentLangKey(url, browserLang), 'pt');
+      const defaultLang = 'pt';
+      const langs = ['en', 'fr', 'pt'];
+
+      const langKey = getCurrentLangKey(langs, defaultLang, url);
+
+      assert.equal(langKey, 'pt');
     });
     it('/en/about/ & en => en', () => {
       const url = '/en/about/';
-      const browserLang = 'en';
-      assert.equal(getCurrentLangKey(url, browserLang), 'en');
+      const defaultLang = 'en';
+      const langs = ['en', 'fr', 'pt'];
+
+      const langKey = getCurrentLangKey(langs, defaultLang, url);
+
+      assert.equal(langKey, 'en');
     });
   });
 

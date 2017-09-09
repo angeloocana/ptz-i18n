@@ -1,4 +1,4 @@
-import { curry, startsWith } from 'ramda';
+import { any, curry, startsWith } from 'ramda';
 
 /**
  * Gets the number of paths in a url
@@ -14,23 +14,18 @@ const nPaths = (url) => (url.match(/\//g) || []).length - 1;
  */
 const isHomePage = (url) => nPaths(url) <= 1;
 
-const defaultLangKey = 'en';
-
 /**
  * Get current language key. 
- * @param {String} url browser url
- * @param {String} browserLang default browser language key
+ * @param {[String]} langs allowed lang keys ['en', 'fr', 'pt']
+ * @param {String} defaultLangKey default browser language key
+ * @param {String} url browser url 
  * @returns {String} current langKey
  */
-const getCurrentLangKey = (url, browserLang = defaultLangKey) => {
-  const langKey = (url || `/${browserLang}/`).split('/')[1];
-  switch (langKey === '' ? browserLang : langKey) {
-  case 'en': return 'en';
-  case 'fr': return 'fr';
-  case 'pt': return 'pt';
-  default: return 'en';
-  }
-};
+const getCurrentLangKey = curry((langs, defaultLangKey, url) => {
+  const langKey = (url || `/${defaultLangKey}/`).split('/')[1];
+  const currentLangKey = any(l => startsWith(l, langKey), langs);
+  return currentLangKey[0] || defaultLangKey;
+});
 
 /**
  * Get url to the language
@@ -52,7 +47,7 @@ const getUrlForLang = curry((homeLink, url, langKey) => {
  * @param {func} getUrlForLang getUrlForLang curried, waiting for langKey
  * @returns {Array} langs menu data
  */
-const getLangs = (langs, currentLangKey, getUrlForLang) => {  
+const getLangs = curry((langs, currentLangKey, getUrlForLang) => {  
   return langs.map(langKey => {
     return {
       langKey,
@@ -60,19 +55,16 @@ const getLangs = (langs, currentLangKey, getUrlForLang) => {
       link: getUrlForLang(langKey)
     };
   });
-};
+});
 
 /**
- * Get i18n obj for the given langKey
- * @param {*} defaultLangKey default langKey
+ * Get i18n obj for the given langKey or first when not found
  * @param {*} i18n Translations object
  * @param {*} langKey langKey
  * @returns {*} i18n[langKey] or i18n[defaultLangKey]
  */
-const getI18n = curry((defaultLangKey, i18n, langKey) =>
-  i18n[langKey] || i18n[defaultLangKey]);
-
-const getI18nBase = getI18n(defaultLangKey);
+const getI18nBase = curry((i18n, langKey) =>
+  i18n[langKey] || Object.values(i18n)[0]);
 
 /**
  * Get slug (path) and langKey for a given file path.
@@ -83,7 +75,7 @@ const getI18nBase = getI18n(defaultLangKey);
  * @param {*} fileAbsolutePath local file absolute path
  * @return {{slug: string, langKey: string}} slug and langKey
  */
-const getSlugAndLang = (defaultLangKey, fileAbsolutePath) => {
+const getSlugAndLang = curry((defaultLangKey, fileAbsolutePath) => {
   const filePath = fileAbsolutePath.split('/pages')[1];
   const fileName = filePath.split('.');
   const langKey = fileName.length === 3 ? fileName[1] : defaultLangKey;
@@ -95,10 +87,9 @@ const getSlugAndLang = (defaultLangKey, fileAbsolutePath) => {
     slug,
     langKey
   };
-};
+});
 
 export {
-  getI18n,
   getI18nBase,
   getCurrentLangKey,
   getLangs,
