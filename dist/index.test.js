@@ -13,17 +13,30 @@ describe('langs', function () {
   describe('getCurrentLangKey', function () {
     it('/ & en => en', function () {
       var url = '/';
-      assert.equal((0, _index.getCurrentLangKey)(url), 'en');
+      var defaultLang = 'en';
+      var langs = ['en', 'fr', 'pt'];
+
+      var langKey = (0, _index.getCurrentLangKey)(langs, defaultLang, url);
+
+      assert.equal(langKey, 'en');
     });
     it('/ & pt => pt', function () {
       var url = '/';
-      var browserLang = 'pt';
-      assert.equal((0, _index.getCurrentLangKey)(url, browserLang), 'pt');
+      var defaultLang = 'pt';
+      var langs = ['en', 'fr', 'pt'];
+
+      var langKey = (0, _index.getCurrentLangKey)(langs, defaultLang, url);
+
+      assert.equal(langKey, 'pt');
     });
     it('/en/about/ & en => en', function () {
       var url = '/en/about/';
-      var browserLang = 'en';
-      assert.equal((0, _index.getCurrentLangKey)(url, browserLang), 'en');
+      var defaultLang = 'en';
+      var langs = ['en', 'fr', 'pt'];
+
+      var langKey = (0, _index.getCurrentLangKey)(langs, defaultLang, url);
+
+      assert.equal(langKey, 'en');
     });
   });
 

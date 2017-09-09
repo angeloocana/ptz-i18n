@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isHomePage = exports.nPaths = exports.getUrlForLang = exports.getSlugAndLang = exports.getLangs = exports.getCurrentLangKey = exports.getI18nBase = exports.getI18n = undefined;
+exports.isHomePage = exports.nPaths = exports.getUrlForLang = exports.getSlugAndLang = exports.getLangs = exports.getCurrentLangKey = exports.getI18nBase = undefined;
 
 var _ramda = require('ramda');
 
@@ -25,29 +25,20 @@ var isHomePage = function isHomePage(url) {
   return nPaths(url) <= 1;
 };
 
-var defaultLangKey = 'en';
-
 /**
  * Get current language key. 
- * @param {String} url browser url
- * @param {String} browserLang default browser language key
+ * @param {[String]} langs allowed lang keys ['en', 'fr', 'pt']
+ * @param {String} defaultLangKey default browser language key
+ * @param {String} url browser url 
  * @returns {String} current langKey
  */
-var getCurrentLangKey = function getCurrentLangKey(url) {
-  var browserLang = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultLangKey;
-
-  var langKey = (url || '/' + browserLang + '/').split('/')[1];
-  switch (langKey === '' ? browserLang : langKey) {
-    case 'en':
-      return 'en';
-    case 'fr':
-      return 'fr';
-    case 'pt':
-      return 'pt';
-    default:
-      return 'en';
-  }
-};
+var getCurrentLangKey = (0, _ramda.curry)(function (langs, defaultLangKey, url) {
+  var langKey = (url || '/' + defaultLangKey + '/').split('/')[1];
+  var currentLangKey = (0, _ramda.any)(function (l) {
+    return (0, _ramda.startsWith)(l, langKey);
+  }, langs);
+  return currentLangKey[0] || defaultLangKey;
+});
 
 /**
  * Get url to the language
@@ -67,7 +58,7 @@ var getUrlForLang = (0, _ramda.curry)(function (homeLink, url, langKey) {
  * @param {func} getUrlForLang getUrlForLang curried, waiting for langKey
  * @returns {Array} langs menu data
  */
-var getLangs = function getLangs(langs, currentLangKey, getUrlForLang) {
+var getLangs = (0, _ramda.curry)(function (langs, currentLangKey, getUrlForLang) {
   return langs.map(function (langKey) {
     return {
       langKey: langKey,
@@ -75,20 +66,17 @@ var getLangs = function getLangs(langs, currentLangKey, getUrlForLang) {
       link: getUrlForLang(langKey)
     };
   });
-};
+});
 
 /**
- * Get i18n obj for the given langKey
- * @param {*} defaultLangKey default langKey
+ * Get i18n obj for the given langKey or first when not found
  * @param {*} i18n Translations object
  * @param {*} langKey langKey
  * @returns {*} i18n[langKey] or i18n[defaultLangKey]
  */
-var getI18n = (0, _ramda.curry)(function (defaultLangKey, i18n, langKey) {
-  return i18n[langKey] || i18n[defaultLangKey];
+var getI18nBase = (0, _ramda.curry)(function (i18n, langKey) {
+  return i18n[langKey] || Object.values(i18n)[0];
 });
-
-var getI18nBase = getI18n(defaultLangKey);
 
 /**
  * Get slug (path) and langKey for a given file path.
@@ -99,7 +87,7 @@ var getI18nBase = getI18n(defaultLangKey);
  * @param {*} fileAbsolutePath local file absolute path
  * @return {{slug: string, langKey: string}} slug and langKey
  */
-var getSlugAndLang = function getSlugAndLang(defaultLangKey, fileAbsolutePath) {
+var getSlugAndLang = (0, _ramda.curry)(function (defaultLangKey, fileAbsolutePath) {
   var filePath = fileAbsolutePath.split('/pages')[1];
   var fileName = filePath.split('.');
   var langKey = fileName.length === 3 ? fileName[1] : defaultLangKey;
@@ -109,9 +97,8 @@ var getSlugAndLang = function getSlugAndLang(defaultLangKey, fileAbsolutePath) {
     slug: slug,
     langKey: langKey
   };
-};
+});
 
-exports.getI18n = getI18n;
 exports.getI18nBase = getI18nBase;
 exports.getCurrentLangKey = getCurrentLangKey;
 exports.getLangs = getLangs;
