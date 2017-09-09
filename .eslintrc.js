@@ -1,7 +1,8 @@
 module.exports = {
     "env": {
         "commonjs": true,
-        "es6": true
+        "es6": true,
+        "jest/globals": true
     },
     "extends": [
         "standard"
@@ -14,8 +15,13 @@ module.exports = {
     },
     "parser": "babel-eslint",
     "plugins": [
+        "jest"
     ],
     "rules": {
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/valid-expect": "error",
         "accessor-pairs": "error",
         "array-bracket-newline": "off",
         "array-bracket-spacing": [
