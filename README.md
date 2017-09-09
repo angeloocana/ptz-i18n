@@ -13,7 +13,7 @@ I18n functions to be used with Gatsby projects.
 
 ## Examples
 
-https://angeloocana.com (source)https://github.com/angeloocana/angeloocana
+[angeloocana.com](https://angeloocana.com) [(source)](https://github.com/angeloocana/angeloocana)
 
 
 ## Install
