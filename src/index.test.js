@@ -3,7 +3,8 @@ import {
   getLangs,
   getUrlForLang,
   getI18nBase,
-  getSlugAndLang
+  getSlugAndLang,
+  isHomePage
 } from './index';
 import * as assert from 'ptz-assert';
 
@@ -143,6 +144,21 @@ describe('langs', () => {
       };
 
       assert.deepEqual(slugAndLangKey, expected);
+    });
+  });
+
+  describe('isHomePage', () => {
+    it('/ true', () => {
+      assert.ok(isHomePage('/'));
+    });
+    it('/en/ true', () => {
+      assert.ok(isHomePage('/en/'));
+    });
+    it('/pt/ true', () => {
+      assert.ok(isHomePage('/pt/'));
+    });
+    it('/en/tags/ false', () => {
+      assert.notOk(isHomePage('/en/tags/'));
     });
   });
 });
