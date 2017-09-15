@@ -8,7 +8,7 @@
     "prebuild": "yarn run lint",
     "build": "babel src --out-dir ./dist",
     "watch": "babel -w src --out-dir ./dist",
-    "pretest": "yarn run lint",
+    "pretest": "yarn run build",
     "test": "jest && codecov",
     "test:watch": "jest --watch"
   },
