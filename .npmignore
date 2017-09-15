@@ -1,3 +1,9 @@
+.eslintrc.js
+.npmignore
+.travis.yml
+
+*.test.js
+
 # Logs
 logs
 *.log
