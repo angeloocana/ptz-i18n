@@ -1,4 +1,5 @@
-import { any, curry, startsWith } from 'ramda';
+import { curry, startsWith } from 'ramda';
+export * from './getCurrentLangKey';
 
 /**
  * Gets the number of paths in a url
@@ -13,19 +14,6 @@ const nPaths = (url) => (url.match(/\//g) || []).length - 1;
  * @returns {Boolean} is home or not
  */
 const isHomePage = (url) => nPaths(url) <= 1;
-
-/**
- * Get current language key. 
- * @param {[String]} langs allowed lang keys ['en', 'fr', 'pt']
- * @param {String} defaultLangKey default browser language key
- * @param {String} url browser url 
- * @returns {String} current langKey
- */
-const getCurrentLangKey = curry((langs, defaultLangKey, url) => {
-  const langKey = (url || `/${defaultLangKey}/`).split('/')[1];
-  const currentLangKey = any(l => startsWith(l, langKey), langs);
-  return currentLangKey[0] || defaultLangKey;
-});
 
 /**
  * Get url to the language
@@ -91,7 +79,6 @@ const getSlugAndLang = curry((defaultLangKey, fileAbsolutePath) => {
 
 export {
   getI18nBase,
-  getCurrentLangKey,
   getLangs,
   getSlugAndLang,
   getUrlForLang,

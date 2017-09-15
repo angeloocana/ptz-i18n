@@ -1,5 +1,9 @@
 ## master
 
+## 0.1.1 (September 15, 2017)
+
+* Fix getCurrentLangKey.
+
 ## 0.1.0 (September 09, 2017)
 
 * Remove defaults.

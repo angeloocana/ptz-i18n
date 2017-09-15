@@ -1,5 +1,4 @@
 import {
-  getCurrentLangKey,
   getLangs,
   getUrlForLang,
   getI18nBase,
@@ -9,37 +8,6 @@ import {
 import * as assert from 'ptz-assert';
 
 describe('langs', () => {
-
-  describe('getCurrentLangKey', () => {
-    it('/ & en => en', () => {
-      const url = '/';
-      const defaultLang = 'en';
-      const langs = ['en', 'fr', 'pt'];
-
-      const langKey = getCurrentLangKey(langs, defaultLang, url);
-
-      assert.equal(langKey, 'en');
-    });
-    it('/ & pt => pt', () => {
-      const url = '/';
-      const defaultLang = 'pt';
-      const langs = ['en', 'fr', 'pt'];
-
-      const langKey = getCurrentLangKey(langs, defaultLang, url);
-
-      assert.equal(langKey, 'pt');
-    });
-    it('/en/about/ & en => en', () => {
-      const url = '/en/about/';
-      const defaultLang = 'en';
-      const langs = ['en', 'fr', 'pt'];
-
-      const langKey = getCurrentLangKey(langs, defaultLang, url);
-
-      assert.equal(langKey, 'en');
-    });
-  });
-
   describe('getUrlForLang', () => {
     it('/ & en => /en/', () => {
       const url = '/';
