@@ -1,5 +1,9 @@
 ## master
 
+## 0.1.2 (September 15, 2017)
+
+* Run tests before build.
+
 ## 0.1.1 (September 15, 2017)
 
 * Fix getCurrentLangKey.
