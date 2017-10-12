@@ -4,6 +4,10 @@
  * @return {String} langKey
  */
 const getBrowserLanguage = () => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
   const first = window.navigator.languages
     ? window.navigator.languages[0]
     : null;

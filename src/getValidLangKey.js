@@ -2,6 +2,7 @@ import { curry, filter, startsWith } from 'ramda';
 
 /**
  * Get valid langKey in langs or return defaultLangKey
+ * @func
  * @param {[String]} langs allowed lang keys ['en', 'fr', 'pt']
  * @param {String} defaultLangKey default browser language key
  * @returns {String} valid langKey
