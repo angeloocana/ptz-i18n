@@ -10,7 +10,8 @@
     "watch": "babel -w src --out-dir ./dist",
     "pretest": "yarn run build",
     "test": "jest && codecov",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:open": "opn ./coverage/lcov-report/index.html"
   },
   "respository": {
     "type": "git",
@@ -39,6 +40,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "jest": "^21.0.2",
+    "opn-cli": "^3.1.0",
     "ptz-assert": "^1.6.8"
   },
   "babel": {
