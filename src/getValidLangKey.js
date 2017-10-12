@@ -1,4 +1,4 @@
-import { curry, filter, startsWith } from 'ramda';
+import { curry, filter, startsWith, isNil } from 'ramda';
 
 /**
  * Get valid langKey in langs or return defaultLangKey
@@ -8,6 +8,10 @@ import { curry, filter, startsWith } from 'ramda';
  * @returns {String} valid langKey
  */
 const getValidLangKey = curry((langs, defaultLangKey, langKey) => {
+  if (isNil(langKey)) {
+    return defaultLangKey;
+  }
+
   const currentLangKey = filter(l => startsWith(l, langKey), langs);
   return currentLangKey[0] || defaultLangKey;
 });
