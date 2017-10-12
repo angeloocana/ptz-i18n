@@ -2,6 +2,7 @@ import { curry, startsWith } from 'ramda';
 import getCurrentLangKey from './getCurrentLangKey';
 import getValidLangKey from './getValidLangKey';
 import getBrowserLanguage from './getBrowserLanguage';
+import redirectToHome from './redirectToHome';
 
 /**
  * Gets the number of paths in a url
@@ -88,5 +89,6 @@ export {
   getSlugAndLang,
   getUrlForLang,
   nPaths,
-  isHomePage
+  isHomePage,
+  redirectToHome
 };
