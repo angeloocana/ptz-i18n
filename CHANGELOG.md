@@ -1,5 +1,11 @@
 ## master
 
+## 0.2.0 (October 12, 2017)
+
+* Add redirectToHome.
+* Add getBrowserLanguage.
+* Add getValidLangKey.
+
 ## 0.1.2 (September 15, 2017)
 
 * Run tests before build.
