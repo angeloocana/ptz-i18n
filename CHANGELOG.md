@@ -1,5 +1,9 @@
 ## master
 
+## 0.2.2 (October 12, 2017)
+
+* redirectToHome: Check if window is undefined.
+
 ## 0.2.1 (October 12, 2017)
 
 * Fix getValidLangKey when null langKey.
