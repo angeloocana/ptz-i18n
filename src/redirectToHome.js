@@ -7,8 +7,12 @@ import getUserLangKey from './getUserLangKey';
  * @return {void}
  */
 const redirectToHome = (langs, defaultLangKey) => {
+  if(typeof window === 'undefined'){
+    return;
+  }
+
   const langKey = getUserLangKey(langs, defaultLangKey);
-  const newUrl = `/${langKey}/`;
+  const newUrl = `/${langKey}/`;  
   window.location.replace(newUrl);
 };
 
