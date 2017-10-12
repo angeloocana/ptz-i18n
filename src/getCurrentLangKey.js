@@ -1,7 +1,9 @@
-import { filter, curry, startsWith } from 'ramda';
+import { curry } from 'ramda';
+import getValidLangKey from './getValidLangKey';
 
 /**
  * Get current language key from url.
+ * @func
  * @param {[String]} langs allowed lang keys ['en', 'fr', 'pt']
  * @param {String} defaultLangKey default browser language key
  * @param {String} url browser url 
@@ -9,10 +11,7 @@ import { filter, curry, startsWith } from 'ramda';
  */
 const getCurrentLangKey = curry((langs, defaultLangKey, url) => {
   const langKey = url.split('/')[1];
-  const currentLangKey = filter(l => startsWith(l, langKey), langs);
-  return currentLangKey[0] || defaultLangKey;
+  return getValidLangKey(langs, defaultLangKey, langKey);
 });
 
-export {
-  getCurrentLangKey
-};
+export default getCurrentLangKey;

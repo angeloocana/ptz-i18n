@@ -1,5 +1,6 @@
 import { curry, startsWith } from 'ramda';
-export * from './getCurrentLangKey';
+import getCurrentLangKey from './getCurrentLangKey';
+import getValidLangKey from './getValidLangKey';
 
 /**
  * Gets the number of paths in a url
@@ -35,7 +36,7 @@ const getUrlForLang = curry((homeLink, url, langKey) => {
  * @param {func} getUrlForLang getUrlForLang curried, waiting for langKey
  * @returns {Array} langs menu data
  */
-const getLangs = curry((langs, currentLangKey, getUrlForLang) => {  
+const getLangs = curry((langs, currentLangKey, getUrlForLang) => {
   return langs.map(langKey => {
     return {
       langKey,
@@ -78,6 +79,8 @@ const getSlugAndLang = curry((defaultLangKey, fileAbsolutePath) => {
 });
 
 export {
+  getCurrentLangKey,
+  getValidLangKey,
   getI18nBase,
   getLangs,
   getSlugAndLang,
