@@ -3,6 +3,7 @@ import getCurrentLangKey from './getCurrentLangKey';
 import getValidLangKey from './getValidLangKey';
 import getBrowserLanguage from './getBrowserLanguage';
 import redirectToHome from './redirectToHome';
+import getUserLangKey from './getUserLangKey';
 
 /**
  * Gets the number of paths in a url
@@ -83,6 +84,7 @@ const getSlugAndLang = curry((defaultLangKey, fileAbsolutePath) => {
 export {
   getBrowserLanguage,
   getCurrentLangKey,
+  getUserLangKey,
   getValidLangKey,
   getI18nBase,
   getLangs,

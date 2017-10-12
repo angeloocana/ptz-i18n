@@ -1,4 +1,4 @@
-import getUserLangKey from './getUserLangKey';
+import { getUserLangKey } from './index';
 import * as assert from 'ptz-assert';
 
 describe('getUserLangKey', () => {
