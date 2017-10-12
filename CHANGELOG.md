@@ -1,5 +1,9 @@
 ## master
 
+## 0.2.1 (October 12, 2017)
+
+* Fix getValidLangKey when null langKey.
+
 ## 0.2.0 (October 12, 2017)
 
 * Add redirectToHome.
