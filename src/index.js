@@ -1,6 +1,7 @@
 import { curry, startsWith } from 'ramda';
 import getCurrentLangKey from './getCurrentLangKey';
 import getValidLangKey from './getValidLangKey';
+import getBrowserLanguage from './getBrowserLanguage';
 
 /**
  * Gets the number of paths in a url
@@ -79,6 +80,7 @@ const getSlugAndLang = curry((defaultLangKey, fileAbsolutePath) => {
 });
 
 export {
+  getBrowserLanguage,
   getCurrentLangKey,
   getValidLangKey,
   getI18nBase,
