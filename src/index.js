@@ -60,15 +60,19 @@ const getI18nBase = curry((i18n, langKey) =>
 
 /**
  * Get slug (path) and langKey for a given file path.
- * 
+ *
  * Used by gatsby-plugin-i18n and gatsby-plugin-i18n-tags
- * 
+ *
  * @param {*} defaultLangKey default langKey
  * @param {*} fileAbsolutePath local file absolute path
  * @return {{slug: string, langKey: string}} slug and langKey
  */
 const getSlugAndLang = curry((defaultLangKey, fileAbsolutePath) => {
-  const filePath = fileAbsolutePath.split('/pages')[1];
+  const filePath = '/' + fileAbsolutePath
+    .split('/src')[1]
+    .split('/')
+    .slice(2)
+    .join('/');
   const fileName = filePath.split('.');
   const langKey = fileName.length === 3 ? fileName[1] : defaultLangKey;
   const slug = fileName.length === 3
