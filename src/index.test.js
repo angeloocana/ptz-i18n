@@ -123,7 +123,7 @@ describe('langs', () => {
       };
 
       assert.deepEqual(slugAndLangKey, expected);
-    })
+    });
 
   });
 
