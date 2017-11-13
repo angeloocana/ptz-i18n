@@ -113,6 +113,18 @@ describe('langs', () => {
 
       assert.deepEqual(slugAndLangKey, expected);
     });
+
+    it('should accept nodes not in the "pages" dir', () => {
+      const absoluteFilePath = '/home/angeloocana/dev/angeloocana/src/content/blog/linux/arch/extract-files.pt.md';
+      const slugAndLangKey = getSlugAndLang('en', absoluteFilePath);
+      const expected = {
+        slug: '/pt/blog/linux/arch/extract-files/',
+        langKey: 'pt'
+      };
+
+      assert.deepEqual(slugAndLangKey, expected);
+    })
+
   });
 
   describe('isHomePage', () => {
