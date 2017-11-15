@@ -1,5 +1,9 @@
 ## master
 
+## 0.2.5 (November 15, 2017)
+
+* Fix getSlugAndLang for index pages.
+
 ## 0.2.4 (November 15, 2017)
 
 * Allow getSlugAndLang to work with custom pages.

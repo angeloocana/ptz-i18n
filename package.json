@@ -1,6 +1,6 @@
 {
   "name": "ptz-i18n",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "I18n functions to be used with Gatsby projects.",
   "main": "dist/index.js",
   "scripts": {
