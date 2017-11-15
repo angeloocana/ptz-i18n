@@ -1,5 +1,13 @@
 ## master
 
+## 0.2.4 (November 15, 2017)
+
+* Allow getSlugAndLang to work with custom pages.
+* Replace first param `defaultLangKey` with pluginOptions. (It still works in the old way, No breaking changes).
+* Partial fix for:
+  - https://github.com/angeloocana/gatsby-plugin-i18n/issues/6
+  - https://github.com/angeloocana/gatsby-plugin-i18n/issues/10
+
 ## 0.2.3 (November 13, 2017)
 
 * Makes getSlugAndLang work with nodes not in the pages dir.
