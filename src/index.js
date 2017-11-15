@@ -5,6 +5,8 @@ import getBrowserLanguage from './getBrowserLanguage';
 import redirectToHome from './redirectToHome';
 import getUserLangKey from './getUserLangKey';
 import getSlugAndLang from './getSlugAndLang';
+import getPagesPaths from './getPagesPaths';
+import isInPagesPaths from './isInPagesPaths';
 
 /**
  * Gets the number of paths in a url
@@ -60,8 +62,11 @@ const getI18nBase = curry((i18n, langKey) =>
   i18n[langKey] || Object.values(i18n)[0]);
 
 export {
+  isHomePage,
+  isInPagesPaths,
   getBrowserLanguage,
   getCurrentLangKey,
+  getPagesPaths,
   getUserLangKey,
   getValidLangKey,
   getI18nBase,
@@ -69,7 +74,6 @@ export {
   getSlugAndLang,
   getUrlForLang,
   nPaths,
-  isHomePage,
   redirectToHome
 };
 

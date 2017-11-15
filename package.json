@@ -24,6 +24,7 @@
   "author": "angeloocana.com",
   "license": "MIT",
   "dependencies": {
+    "folktale": "^2.0.1",
     "ramda": "^0.24.1"
   },
   "devDependencies": {
