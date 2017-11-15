@@ -1,5 +1,11 @@
 ## master
 
+## 0.3.0 (November 15, 2017)
+
+* Add isInPagesPaths.
+* Add getPagesPaths.
+* Add folktale to dependencies.
+
 ## 0.2.5 (November 15, 2017)
 
 * Fix getSlugAndLang for index pages.
