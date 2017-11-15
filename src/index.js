@@ -4,6 +4,7 @@ import getValidLangKey from './getValidLangKey';
 import getBrowserLanguage from './getBrowserLanguage';
 import redirectToHome from './redirectToHome';
 import getUserLangKey from './getUserLangKey';
+import getSlugAndLang from './getSlugAndLang';
 
 /**
  * Gets the number of paths in a url
@@ -58,33 +59,6 @@ const getLangs = curry((langs, currentLangKey, getUrlForLang) => {
 const getI18nBase = curry((i18n, langKey) =>
   i18n[langKey] || Object.values(i18n)[0]);
 
-/**
- * Get slug (path) and langKey for a given file path.
- *
- * Used by gatsby-plugin-i18n and gatsby-plugin-i18n-tags
- *
- * @param {*} defaultLangKey default langKey
- * @param {*} fileAbsolutePath local file absolute path
- * @return {{slug: string, langKey: string}} slug and langKey
- */
-const getSlugAndLang = curry((defaultLangKey, fileAbsolutePath) => {
-  const filePath = '/' + fileAbsolutePath
-    .split('/src')[1]
-    .split('/')
-    .slice(2)
-    .join('/');
-  const fileName = filePath.split('.');
-  const langKey = fileName.length === 3 ? fileName[1] : defaultLangKey;
-  const slug = fileName.length === 3
-    ? `/${langKey}${fileName[0].replace('/index', '')}/`
-    : `${fileName[0].replace('/index', '')}/`;
-
-  return {
-    slug,
-    langKey
-  };
-});
-
 export {
   getBrowserLanguage,
   getCurrentLangKey,
@@ -98,3 +72,4 @@ export {
   isHomePage,
   redirectToHome
 };
+

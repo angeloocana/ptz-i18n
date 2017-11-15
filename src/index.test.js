@@ -2,7 +2,6 @@ import {
   getLangs,
   getUrlForLang,
   getI18nBase,
-  getSlugAndLang,
   isHomePage
 } from './index';
 import * as assert from 'ptz-assert';
@@ -91,42 +90,6 @@ describe('langs', () => {
     });
   });
 
-  describe('getSlugAndLang', () => {
-    it('.pt file', () => {
-      const absoluteFilePath = '/home/angeloocana/dev/angeloocana/src/pages/blog/linux/arch/extract-files.pt.md';
-      const slugAndLangKey = getSlugAndLang('en', absoluteFilePath);
-      const expected = {
-        slug: '/pt/blog/linux/arch/extract-files/',
-        langKey: 'pt'
-      };
-
-      assert.deepEqual(slugAndLangKey, expected);
-    });
-
-    it('no .langKey file', () => {
-      const absoluteFilePath = '/home/angeloocana/dev/angeloocana/src/pages/Tutoriais/DicaRapida_1_Melhorar_Performance_MVC.md';
-      const slugAndLangKey = getSlugAndLang('any', absoluteFilePath);
-      const expected = {
-        slug: '/Tutoriais/DicaRapida_1_Melhorar_Performance_MVC/',
-        langKey: 'any'
-      };
-
-      assert.deepEqual(slugAndLangKey, expected);
-    });
-
-    it('should accept nodes not in the "pages" dir', () => {
-      const absoluteFilePath = '/home/angeloocana/dev/angeloocana/src/content/blog/linux/arch/extract-files.pt.md';
-      const slugAndLangKey = getSlugAndLang('en', absoluteFilePath);
-      const expected = {
-        slug: '/pt/blog/linux/arch/extract-files/',
-        langKey: 'pt'
-      };
-
-      assert.deepEqual(slugAndLangKey, expected);
-    });
-
-  });
-
   describe('isHomePage', () => {
     it('/ true', () => {
       assert.ok(isHomePage('/'));
@@ -142,3 +105,4 @@ describe('langs', () => {
     });
   });
 });
+
