@@ -1,7 +1,8 @@
 {
   "name": "ptz-i18n",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "I18n functions to be used with Gatsby projects.",
+  "homepage": "https://github.com/angeloocana/ptz-i18n#readme",
   "main": "dist/index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint --fix ./src",

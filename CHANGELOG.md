@@ -1,5 +1,9 @@
 ## master
 
+## 0.4.0 (December 03, 2017)
+
+* Add redirectTo prop to return obj from getSlugAndLang.
+
 ## 0.3.0 (November 15, 2017)
 
 * Add isInPagesPaths.
