@@ -8,9 +8,7 @@ import { pipe } from 'ramda';
  * @param {String} defaultLangKey default browser language key
  * @return {string} valid langKey
  */
-const getUserLangKey = (langs, defaultLangKey) => pipe(
-  getBrowserLanguage,
-  getValidLangKey(langs, defaultLangKey)
-)();
+const getUserLangKey = (langs, defaultLangKey) =>
+  pipe(getBrowserLanguage, getValidLangKey(langs, defaultLangKey))();
 
 export default getUserLangKey;

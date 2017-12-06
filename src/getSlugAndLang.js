@@ -1,14 +1,18 @@
-import { compose, curry, endsWith, isNil, head, not, startsWith } from 'ramda';
+import { compose, curry, isNil, head, not } from 'ramda';
 
 const defaultPagesPaths = ['/src/pages/'];
 
-const getPagesPaths = options => (options && options.pagesPaths) || defaultPagesPaths;  
+const getPagesPaths = options =>
+  (options && options.pagesPaths) || defaultPagesPaths;
 
-const getLangKeyDefault = options => (options && options.langKeyDefault) || options;
+const getLangKeyDefault = options =>
+  (options && options.langKeyDefault) || options;
 
-const addSlashStart = fileName => startsWith('/', fileName) ? fileName : '/' + fileName;
+const addSlashStart = fileName =>
+  fileName.startsWith('/') ? fileName : '/' + fileName;
 
-const addSlashEnd = fileName => endsWith('/', fileName) ? fileName : fileName + '/';
+const addSlashEnd = fileName =>
+  fileName.endsWith('/') ? fileName : fileName + '/';
 
 const addSlash = compose(addSlashStart, addSlashEnd);
 
@@ -22,27 +26,28 @@ const addSlash = compose(addSlashStart, addSlashEnd);
  * @return {{slug: string, langKey: string}} slug and langKey
  */
 const getSlugAndLang = curry((options, fileAbsolutePath) => {
-  const slugsAndLangs = getPagesPaths(options)
-    .map(pagesPath => {
-      const filePath = `safeStartToSplit-${fileAbsolutePath}`.split(pagesPath)[1];
+  const slugsAndLangs = getPagesPaths(options).map(pagesPath => {
+    const filePath = `safeStartToSplit-${fileAbsolutePath}`.split(pagesPath)[1];
 
-      if(isNil(filePath)){
-        return null;
-      }
+    if (isNil(filePath)) {
+      return null;
+    }
 
-      const fileName = filePath.split('.');
-      const langKey = fileName.length === 3 ? fileName[1] : getLangKeyDefault(options);
-      const slug = addSlash((fileName.length === 3 ? langKey : '') + 
-        addSlash(fileName[0].replace('index', '')));
+    const fileName = filePath.split('.');
+    const langKey =
+      fileName.length === 3 ? fileName[1] : getLangKeyDefault(options);
+    const slug = addSlash(
+      (fileName.length === 3 ? langKey : '') +
+        addSlash(fileName[0].replace('index', ''))
+    );
 
-      return {
-        slug,
-        langKey
-      };
-    });
-  
+    return {
+      slug,
+      langKey
+    };
+  });
+
   return head(slugsAndLangs.filter(compose(not, isNil)));
 });
 
 export default getSlugAndLang;
-

@@ -1,4 +1,4 @@
-import { curry, startsWith } from 'ramda';
+import { curry } from 'ramda';
 import getCurrentLangKey from './getCurrentLangKey';
 import getValidLangKey from './getValidLangKey';
 import getBrowserLanguage from './getBrowserLanguage';
@@ -13,14 +13,14 @@ import isInPagesPaths from './isInPagesPaths';
  * @param {*} url pathName
  * @returns {Number} number of paths
  */
-const nPaths = (url) => (url.match(/\//g) || []).length - 1;
+const nPaths = url => (url.match(/\//g) || []).length - 1;
 
 /**
  * Checks if the url is /, /en/ or /pt/
  * @param {*} url this.props.location
  * @returns {Boolean} is home or not
  */
-const isHomePage = (url) => nPaths(url) <= 1;
+const isHomePage = url => nPaths(url) <= 1;
 
 /**
  * Get url to the language
@@ -30,7 +30,7 @@ const isHomePage = (url) => nPaths(url) <= 1;
  * @returns {String} new url
  */
 const getUrlForLang = curry((homeLink, url, langKey) => {
-  return url === '/' || !startsWith(homeLink, url)
+  return url === '/' || !url.startsWith(homeLink)
     ? `/${langKey}/`
     : url.replace(homeLink, `/${langKey}/`);
 });
@@ -58,8 +58,9 @@ const getLangs = curry((langs, currentLangKey, getUrlForLang) => {
  * @param {*} langKey langKey
  * @returns {*} i18n[langKey] or i18n[defaultLangKey]
  */
-const getI18nBase = curry((i18n, langKey) =>
-  i18n[langKey] || Object.values(i18n)[0]);
+const getI18nBase = curry(
+  (i18n, langKey) => i18n[langKey] || Object.values(i18n)[0]
+);
 
 export {
   isHomePage,
@@ -76,4 +77,3 @@ export {
   nPaths,
   redirectToHome
 };
-

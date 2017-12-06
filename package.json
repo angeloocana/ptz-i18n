@@ -17,10 +17,7 @@
     "type": "git",
     "url": "https://github.com/angeloocana/ptz-i18n"
   },
-  "keywords": [
-    "gatsby",
-    "i18n"
-  ],
+  "keywords": ["gatsby", "i18n"],
   "author": "angeloocana.com",
   "license": "MIT",
   "dependencies": {
@@ -30,6 +27,7 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
+    "babel-plugin-ramda": "^1.4.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "codecov": "^2.3.0",
@@ -45,15 +43,9 @@
     "ptz-assert": "^1.6.8"
   },
   "babel": {
-    "presets": [
-      "env"
-    ],
-    "plugins": [
-      "transform-object-rest-spread"
-    ],
-    "ignore": [
-      "spec.js,test.js"
-    ]
+    "presets": ["env"],
+    "plugins": ["transform-object-rest-spread", "ramda"],
+    "ignore": ["spec.js,test.js"]
   },
   "readme": "README.md",
   "jest": {
