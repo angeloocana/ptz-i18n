@@ -23,7 +23,7 @@ const addSlash = compose(addSlashStart, addSlashEnd);
  *
  * @param {{langKeyDefault: string, pagesPaths: string[] }} options plugin options
  * @param {String} fileAbsolutePath local file absolute path
- * @return {{slug: string, langKey: string}} slug and langKey
+ * @return {{slug: string, langKey: string, redirectTo: string}} slug and langKey
  */
 const getSlugAndLang = curry((options, fileAbsolutePath) => {
   const slugsAndLangs = getPagesPaths(options).map(pagesPath => {

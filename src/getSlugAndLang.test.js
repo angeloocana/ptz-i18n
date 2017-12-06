@@ -7,7 +7,8 @@ describe('getSlugAndLang', () => {
     const slugAndLangKey = getSlugAndLang('en', absoluteFilePath);
     const expected = {
       slug: '/pt/blog/test/',
-      langKey: 'pt'
+      langKey: 'pt',
+      redirectTo: null
     };
 
     assert.deepEqual(slugAndLangKey, expected);
@@ -18,7 +19,8 @@ describe('getSlugAndLang', () => {
     const slugAndLangKey = getSlugAndLang('any', absoluteFilePath);
     const expected = {
       slug: '/test/',
-      langKey: 'any'
+      langKey: 'any',
+      redirectTo: null
     };
 
     assert.deepEqual(slugAndLangKey, expected);
@@ -29,7 +31,8 @@ describe('getSlugAndLang', () => {
     const slugAndLangKey = getSlugAndLang('en', absoluteFilePath);
     const expected = {
       slug: '/pt/blog/',
-      langKey: 'pt'
+      langKey: 'pt',
+      redirectTo: null
     };
 
     assert.deepEqual(slugAndLangKey, expected);
@@ -37,10 +40,11 @@ describe('getSlugAndLang', () => {
 
   it('index no .langKey file', () => {
     const absoluteFilePath = '/what/ever/src/pages/index.md';
-    const slugAndLangKey = getSlugAndLang('any', absoluteFilePath);
+    const slugAndLangKey = getSlugAndLang('en', absoluteFilePath);
     const expected = {
       slug: '/',
-      langKey: 'any'
+      langKey: 'en',
+      redirectTo: '/en/'
     };
 
     assert.deepEqual(slugAndLangKey, expected);
@@ -56,7 +60,8 @@ describe('getSlugAndLang', () => {
     const slugAndLangKey = getSlugAndLang(options, absoluteFilePath);
     const expected = {
       slug: '/pt/blog/test/',
-      langKey: 'pt'
+      langKey: 'pt',
+      redirectTo: null
     };
 
     assert.deepEqual(slugAndLangKey, expected);
@@ -71,7 +76,8 @@ describe('getSlugAndLang', () => {
     const slugAndLangKey = getSlugAndLang(options, absoluteFilePath);
     const expected = {
       slug: '/blog/test/',
-      langKey: 'en'
+      langKey: 'en',
+      redirectTo: null
     };
 
     assert.deepEqual(slugAndLangKey, expected);
@@ -86,7 +92,8 @@ describe('getSlugAndLang', () => {
     const slugAndLangKey = getSlugAndLang(options, absoluteFilePath);
     const expected = {
       slug: '/pt/blog/',
-      langKey: 'pt'
+      langKey: 'pt',
+      redirectTo: null
     };
 
     assert.deepEqual(slugAndLangKey, expected);
@@ -101,10 +108,10 @@ describe('getSlugAndLang', () => {
     const slugAndLangKey = getSlugAndLang(options, absoluteFilePath);
     const expected = {
       slug: '/blog/',
-      langKey: 'en'
+      langKey: 'en',
+      redirectTo: null
     };
 
     assert.deepEqual(slugAndLangKey, expected);
   });
 });
-

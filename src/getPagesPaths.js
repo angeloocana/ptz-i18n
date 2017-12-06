@@ -1,4 +1,3 @@
-// import { isNil } from 'ramda';
 import { isNil } from 'ramda';
 import Result from 'folktale/result';
 
