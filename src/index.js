@@ -1,4 +1,4 @@
-import { curry } from 'ramda';
+import { curry, startsWith } from 'ramda';
 import getCurrentLangKey from './getCurrentLangKey';
 import getValidLangKey from './getValidLangKey';
 import getBrowserLanguage from './getBrowserLanguage';
@@ -30,7 +30,7 @@ const isHomePage = url => nPaths(url) <= 1;
  * @returns {String} new url
  */
 const getUrlForLang = curry((homeLink, url, langKey) => {
-  return url === '/' || !url.startsWith(homeLink)
+  return url === '/' || !startsWith(homeLink, url)
     ? `/${langKey}/`
     : url.replace(homeLink, `/${langKey}/`);
 });

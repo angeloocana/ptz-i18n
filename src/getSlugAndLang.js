@@ -1,4 +1,4 @@
-import { compose, curry, isNil, head, not } from 'ramda';
+import { compose, curry, isNil, head, not, startsWith, endsWith } from 'ramda';
 
 const defaultPagesPaths = ['/src/pages/'];
 
@@ -9,10 +9,10 @@ const getLangKeyDefault = options =>
   (options && options.langKeyDefault) || options;
 
 const addSlashStart = fileName =>
-  fileName.startsWith('/') ? fileName : '/' + fileName;
+  startsWith('/', fileName) ? fileName : '/' + fileName;
 
 const addSlashEnd = fileName =>
-  fileName.endsWith('/') ? fileName : fileName + '/';
+  endsWith('/', fileName) ? fileName : fileName + '/';
 
 const addSlash = compose(addSlashStart, addSlashEnd);
 
@@ -33,9 +33,9 @@ const getSlugAndLang = curry((options, fileAbsolutePath) => {
       return null;
     }
 
+    const langKeyDefault = getLangKeyDefault(options);
     const fileName = filePath.split('.');
-    const langKey =
-      fileName.length === 3 ? fileName[1] : getLangKeyDefault(options);
+    const langKey = fileName.length === 3 ? fileName[1] : langKeyDefault;
     const slug = addSlash(
       (fileName.length === 3 ? langKey : '') +
         addSlash(fileName[0].replace('index', ''))
@@ -43,7 +43,8 @@ const getSlugAndLang = curry((options, fileAbsolutePath) => {
 
     return {
       slug,
-      langKey
+      langKey,
+      redirectTo: slug === '/' ? addSlash(langKeyDefault) : null
     };
   });
 
