@@ -15,4 +15,3 @@ const isInPagesPaths = (options, path) => {
 };
 
 export default isInPagesPaths;
-

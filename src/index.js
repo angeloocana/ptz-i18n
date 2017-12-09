@@ -13,14 +13,14 @@ import isInPagesPaths from './isInPagesPaths';
  * @param {*} url pathName
  * @returns {Number} number of paths
  */
-const nPaths = (url) => (url.match(/\//g) || []).length - 1;
+const nPaths = url => (url.match(/\//g) || []).length - 1;
 
 /**
  * Checks if the url is /, /en/ or /pt/
  * @param {*} url this.props.location
  * @returns {Boolean} is home or not
  */
-const isHomePage = (url) => nPaths(url) <= 1;
+const isHomePage = url => nPaths(url) <= 1;
 
 /**
  * Get url to the language
@@ -58,8 +58,9 @@ const getLangs = curry((langs, currentLangKey, getUrlForLang) => {
  * @param {*} langKey langKey
  * @returns {*} i18n[langKey] or i18n[defaultLangKey]
  */
-const getI18nBase = curry((i18n, langKey) =>
-  i18n[langKey] || Object.values(i18n)[0]);
+const getI18nBase = curry(
+  (i18n, langKey) => i18n[langKey] || Object.values(i18n)[0]
+);
 
 export {
   isHomePage,
@@ -76,4 +77,3 @@ export {
   nPaths,
   redirectToHome
 };
-

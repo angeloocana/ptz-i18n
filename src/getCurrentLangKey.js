@@ -6,7 +6,7 @@ import getValidLangKey from './getValidLangKey';
  * @func
  * @param {[String]} langs allowed lang keys ['en', 'fr', 'pt']
  * @param {String} defaultLangKey default browser language key
- * @param {String} url browser url 
+ * @param {String} url browser url
  * @returns {String} current langKey
  */
 const getCurrentLangKey = curry((langs, defaultLangKey, url) => {

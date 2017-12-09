@@ -8,13 +8,13 @@ import Result from 'folktale/result';
  * @return {Result<String[]>} pagesPaths Result
  */
 const getPagesPaths = options => {
-  if(isNil(options)){
+  if (isNil(options)) {
     return Result.Error('Null plugin options');
   }
 
   const { pagesPaths } = options;
 
-  if(isNil(pagesPaths)){
+  if (isNil(pagesPaths)) {
     return Result.Error('Null pluginOptions.pagesPaths');
   }
 
@@ -25,4 +25,3 @@ const getPagesPaths = options => {
 };
 
 export default getPagesPaths;
-

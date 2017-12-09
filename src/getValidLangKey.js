@@ -1,4 +1,4 @@
-import { curry, filter, startsWith, isNil } from 'ramda';
+import { curry, filter, isNil, startsWith } from 'ramda';
 
 /**
  * Get valid langKey in langs or return defaultLangKey
