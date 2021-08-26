@@ -14,7 +14,7 @@
     "test:watch": "jest --watch",
     "test:open": "opn ./coverage/lcov-report/index.html"
   },
-  "respository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/angeloocana/ptz-i18n"
   },
